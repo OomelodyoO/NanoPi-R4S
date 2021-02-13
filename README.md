@@ -4,6 +4,8 @@ This project is original from https://github.com/LewiVir/NanoPi-R4S
 
 Create this own repo to build firmware for myself with customize configuration
 
+This branch is for test and new feature
+
 ## Tips
 * Default Gateway: 192.168.2.1
 * Default Password: password
@@ -33,3 +35,5 @@ https://crontab.guru/
 * https://github.com/SuLingGG/OpenWrt-Rpi
 * https://github.com/friendlyarm/friendlywrt
 * https://github.com/P3TERX/Actions-OpenWrt
+* https://github.com/immortalwrt/immortalwrt
+* https://github.com/DHDAXCW/NanoPi-R4S-2021

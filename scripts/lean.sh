@@ -29,6 +29,10 @@ git clone --depth=1 https://github.com/jerrykuku/luci-app-vssr
 git clone --depth=1 https://github.com/BoringCat/luci-app-mentohust
 git clone --depth=1 https://github.com/KyleRicardo/MentoHUST-OpenWrt-ipk
 
+# Add minieap & luci-proto-minieap
+git clone --depth=1 https://github.com/ysc3839/luci-proto-minieap
+svn co https://github.com/immortalwrt/immortalwrt/trunk/package/ntlf9t/minieap
+
 # Add ServerChan
 git clone --depth=1 https://github.com/tty228/luci-app-serverchan
 
@@ -52,13 +56,22 @@ rm -rf ../lean/luci-app-docker
 git clone --depth=1 https://github.com/KFERMercer/luci-app-dockerman
 git clone --depth=1 https://github.com/lisaac/luci-lib-docker
 
+# Add luci-app-gowebdav
+git clone --depth=1 https://github.com/immortalwrt/openwrt-gowebdav
+
 # Add luci-theme-argon
 git clone --depth=1 -b 18.06 https://github.com/jerrykuku/luci-theme-argon
 git clone --depth=1 https://github.com/jerrykuku/luci-app-argon-config
 rm -rf ../lean/luci-theme-argon
 
+# Add tmate
+git clone --depth=1 https://github.com/immortalwrt/openwrt-tmate
+
 # Add subconverter
 git clone --depth=1 https://github.com/tindy2013/openwrt-subconverter
+
+# Add gotop
+svn co https://github.com/immortalwrt/immortalwrt/trunk/package/ctcgfw/gotop
 
 # Add smartdns
 svn co https://github.com/pymumu/smartdns/trunk/package/openwrt ../smartdns
@@ -71,7 +84,29 @@ git clone --depth=1 https://github.com/zcy85611/openwrt-luci-kcp-udp
 git clone --depth=1 https://github.com/destan19/OpenAppFilter
 popd
 
+# Add CPUInfo
 pushd feeds/luci/modules/luci-mod-admin-full/luasrc/view/admin_status
+popd
+
+# Add Pandownload
+pushd package/lean
+svn co https://github.com/immortalwrt/immortalwrt/trunk/package/lean/pandownload-fake-server
+popd
+
+# Add driver for rtl8821cu & rtl8812au-ac
+pushd package/lean
+svn co https://github.com/immortalwrt/immortalwrt/branches/master/package/ctcgfw/rtl8812au-ac
+svn co https://github.com/immortalwrt/immortalwrt/branches/master/package/ctcgfw/rtl8821cu
+popd
+
+#Add penwrt-feeds-driver-ext
+pushd package/lean
+git clone —depth=1 https://github.com/drwatson32/openwrt-feeds-driver-ext
+popd
+
+# rtl88x2bu
+pushd package/lean
+svn co https://github.com/gogogojason/oppackages/branches/master/rtl88x2bu
 popd
 
 # Mod zzz-default-settings
@@ -84,7 +119,7 @@ popd
 # Fix libssh
 pushd feeds/packages/libs
 rm -rf libssh
-svn co https://github.com/openwrt/packages/trunk/libs/libssh
+svn co https://github.com/coolsnowwolf/packages/trunk/libs/libssh
 popd
 
 # Use Lienol's https-dns-proxy package
@@ -96,7 +131,7 @@ popd
 # Use snapshots syncthing package
 pushd feeds/packages/utils
 rm -rf syncthing
-svn co https://github.com/openwrt/packages/trunk/utils/syncthing
+svn co https://github.com/coolsnowwolf/packages/trunk/utils/syncthing
 popd
 
 # Fix mt76 wireless driver
@@ -113,14 +148,14 @@ popd
 # Change default shell to zsh
 sed -i 's/\/bin\/ash/\/usr\/bin\/zsh/g' package/base-files/files/etc/passwd
 
-
-# Custom configs
 # Modify default IP
 sed -i 's/192.168.1.1/192.168.2.1/g' package/base-files/files/bin/config_generate
 
+# Custom configs
 git am $GITHUB_WORKSPACE/patches/lean/*.patch
 echo -e " Lean's OpenWrt built on "$(date +%Y.%m.%d)"\n -----------------------------------------------------" >> package/base-files/files/etc/banner
 
+# Add Project OpenWrt's autocore
 pushd package/lean
 rm -rf autocore
 svn co https://github.com/immortalwrt/immortalwrt/branches/master/package/lean/autocore
