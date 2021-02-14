@@ -98,14 +98,9 @@ svn co https://github.com/immortalwrt/immortalwrt/branches/master/package/ctcgfw
 svn co https://github.com/immortalwrt/immortalwrt/branches/master/package/ctcgfw/rtl8821cu
 popd
 
-#Add penwrt-feeds-driver-ext
-pushd package/lean
-git clone —depth=1 https://github.com/drwatson32/openwrt-feeds-driver-ext
-popd
-
 # rtl88x2bu
 pushd package/lean
-svn co https://github.com/gogogojason/oppackages/branches/master/rtl88x2bu
+svn co https://github.com/immortalwrt/immortalwrt/branches/master/package/ctcgfw/rtl88x2bu
 popd
 
 # Mod zzz-default-settings
@@ -154,8 +149,7 @@ sed -i 's/192.168.1.1/192.168.2.1/g' package/base-files/files/bin/config_generat
 git am $GITHUB_WORKSPACE/patches/lean/*.patch
 echo -e " Lean's OpenWrt built on "$(date +%Y.%m.%d)"\n -----------------------------------------------------" >> package/base-files/files/etc/banner
 
-# Add Project OpenWrt's autocore
-pushd package/lean
-rm -rf autocore
-svn co https://github.com/immortalwrt/immortalwrt/branches/master/package/lean/autocore
+#Add CUPInfo
+pushd package/lean/autocore/files/arm/sbin
+cp -f $GITHUB_WORKSPACE/scripts/cpuinfo cpuinfo
 popd
