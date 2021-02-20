@@ -87,6 +87,16 @@ popd
 pushd feeds/luci/modules/luci-mod-admin-full/luasrc/view/admin_status
 popd
 
+#Add luci-app-ddnsto
+pushd package/network/services
+git clone --depth=1 https://github.com/linkease/ddnsto-openwrt
+popd
+
+# Add luci-app-linkease
+pushd package/network/services
+git clone --depth=1 https://github.com/linkease/linkease-openwrt
+popd
+
 # Add Pandownload
 pushd package/lean
 svn co https://github.com/immortalwrt/immortalwrt/trunk/package/lean/pandownload-fake-server
@@ -148,6 +158,12 @@ sed -i 's/192.168.1.1/192.168.2.1/g' package/base-files/files/bin/config_generat
 # Custom configs
 git am $GITHUB_WORKSPACE/patches/lean/*.patch
 echo -e " Lean's OpenWrt built on "$(date +%Y.%m.%d)"\n -----------------------------------------------------" >> package/base-files/files/etc/banner
+
+# Add Project OpenWrt's autocore
+#pushd package/lean
+#rm -rf autocore
+#svn co https://github.com/immortalwrt/immortalwrt/branches/master/package/lean/autocore
+#popd
 
 #Add CUPInfo
 pushd package/lean/autocore/files/arm/sbin
