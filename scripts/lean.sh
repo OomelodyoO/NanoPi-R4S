@@ -83,10 +83,6 @@ git clone --depth=1 https://github.com/zcy85611/openwrt-luci-kcp-udp
 git clone --depth=1 https://github.com/destan19/OpenAppFilter
 popd
 
-# Add CPUInfo
-pushd feeds/luci/modules/luci-mod-admin-full/luasrc/view/admin_status
-popd
-
 #Add luci-app-ddnsto
 pushd package/network/services
 git clone --depth=1 https://github.com/linkease/ddnsto-openwrt
